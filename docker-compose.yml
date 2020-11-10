@@ -1,0 +1,44 @@
+version: '3'
+services:
+    main_api:
+        build: ./Main
+        image: nedroden/kraken-main-api
+        ports:
+            - "5000:80"
+        container_name: "kraken_main_api"
+        links:
+            - "sensor_api"
+            - "main_db"
+        depends_on:
+            - "main_db"
+    main_db:
+        container_name: "kraken_main_db"
+        image: mongo
+        ports:
+            - "27017:27017"
+        environment:
+            - MONGO_INITDB_DATABASE=kraken
+    sensor_api:
+        build: ./Sensor
+        image: nedroden/kraken-sensor-api
+        ports:
+            - "5002:80"
+        container_name: "kraken_sensor_api"
+        links:
+            - "sensor_db"
+        depends_on:
+            - "sensor_db"
+    sensor_db:
+        container_name: kraken_sensor_db
+        image: cassandra:latest
+        ports:
+            - "7000:7000"
+            - "7001:7001"
+            - "7199:7199"
+            - "9042:9042"
+            - "9160:9160"
+        volumes:
+            - ./data/cassandra:/var/lib/cassandra
+            - "./Init/cassandra.sh:/cassandra.sh"
+        command: "sh /cassandra.sh"
+        restart: always

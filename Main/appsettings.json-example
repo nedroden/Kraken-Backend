@@ -1,0 +1,20 @@
+{
+    "Logging": {
+      "LogLevel": {
+        "Default": "Information",
+        "Microsoft": "Warning",
+        "Microsoft.Hosting.Lifetime": "Information"
+      }
+    },
+    "AllowedHosts": "*",
+    "DatabaseSettings": {
+        "ConnectionString": "mongodb://kraken_main_db:27017",
+        "DatabaseName": "kraken"
+    },
+    "Authentication": {
+      "JwtKey": "6r4#Cs%WNhVqMeRc",
+      "JwtIssuer": "KrakenNetherlands",
+      "JwtExpireDays": 30
+    }
+  }
+  

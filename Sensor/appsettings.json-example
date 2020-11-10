@@ -1,0 +1,18 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "DatabaseSettings": {
+    "HostName": "kraken_sensor_db",
+    "KeyspaceName": "kraken"
+  },
+  "Queue": {
+      "ConnectionString": "amqp://guest:guest@activemq:5672",
+      "Name": "KrakenMeasurementQueue"
+  }
+}
